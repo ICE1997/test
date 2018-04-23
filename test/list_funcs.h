@@ -11,8 +11,12 @@ typedef struct Node{
     struct Node* next;
 }Node;
 
-typedef struct Node Node;
-typedef struct Node* List;
+typedef struct DT{
+    int stu_num;
+    struct DT* pres;
+    struct DT* next;
+}DT;
+typedef struct DT* NDT;
 
 Node* list_crt(int list_num);
 void list_prt(Node* head);
@@ -21,3 +25,8 @@ Node* list_merge(Node* list1,Node* list2);
 Node* list_circl(Node* list1,Node* list2);
 void list_circl_prt(Node* head);
 Node* list_crt_onenode(void);
+Node* list_circl_crt(int list_num);
+Node* list_circl_crt_onenode(void);
+void list_circl_tail_prt(Node* tail);
+NDT double_list_crt(int list_length);
+void double_list_prt(NDT L);
