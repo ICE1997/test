@@ -64,9 +64,9 @@ int main(void){
 //    list_4=list_circl_crt(list_num);
 //    list_circl_tail_prt(list_4);//一些无聊的代码
 //
-    printf("Now,let me make a circular-list.\n");
-    list_cir=list_circl(list_1,list_2);
-    list_circl_prt(list_cir);//和上个合并程序冲突，所以隐藏；
+//    printf("Now,let me make a circular-list.\n");
+//    list_cir=list_circl(list_1,list_2);
+//    list_circl_prt(list_cir);//和上个合并程序冲突，所以隐藏；
     
 
 
