@@ -9,6 +9,7 @@
 #include "list_funcs.h"
 int main(void){
     int list_num;
+    int list_len;
 //    Node* list_1;
 //    Node* list_2;
 ////    Node* list_3;
@@ -19,7 +20,15 @@ int main(void){
     printf("How many elements you wanna add to list?");
     scanf("%d",&list_num);
     NDT_list=double_list_crt(list_num);
-    double_list_prt(NDT_list);
+    double_list_prt2(NDT_list);
+    list_len=double_list_len(NDT_list);
+//    printf("%d",list_len);
+    NDT_list=double_list_insert(NDT_list,list_len);
+    double_list_prt2(NDT_list);
+    list_len=double_list_len(NDT_list);
+    NDT_list=double_list_delete(NDT_list,list_len);
+    double_list_prt2(NDT_list);
+//    double_list_prt(NDT_list);
 //    printf("How many elements you wanna add to list?");
 //    scanf("%d",&list_num);
 //    list_1=list_crt(list_num);
@@ -55,9 +64,9 @@ int main(void){
 //    list_4=list_circl_crt(list_num);
 //    list_circl_tail_prt(list_4);//一些无聊的代码
 //
-//    printf("Now,let me make a circular-list.\n");
-//    list_cir=list_circl(list_1,list_2);
-//    list_circl_prt(list_cir);//和上个合并程序冲突，所以隐藏；
+    printf("Now,let me make a circular-list.\n");
+    list_cir=list_circl(list_1,list_2);
+    list_circl_prt(list_cir);//和上个合并程序冲突，所以隐藏；
     
 
 

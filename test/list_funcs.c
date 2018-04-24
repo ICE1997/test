@@ -204,54 +204,137 @@ NDT double_list_crt(int list_length){
     if((L=head=(NDT)malloc(sizeof(DT)))==NULL){
         printf("Fail to create the node!\n");
     }else{
+        head->stu_num=0;
+        head->next=NULL;
+        head->pres=NULL;
         while(list_length>0){
             if((new_data=(NDT)malloc(sizeof(DT)))==NULL){
                 printf("Fail to create the node!\n");
             }
-    scanf("%d",&new_data->stu_num);
-    new_data->next=NULL;
-    new_data->pres=NULL;
+            scanf("%d",&new_data->stu_num);
+            new_data->next=NULL;
+            new_data->pres=NULL;
             head->next=new_data;
             head->next->pres=head;
             head=new_data;
             list_length--;
         }
-
+        printf("输入结束！\n");
     }
     return L;
 }
 
 void double_list_prt(NDT L){
     NDT head;
-    head=L;
+    head=L->next;
     char op;
     getchar();
     scanf("%c",&op);
-    while (op!='q'|op!='Q') {
+    while (1) {
         switch (op) {
             case 'w':
-                if(head->pres==NULL){
-                    printf("此节点不存在！\n");
+                if(head->pres==NULL||head->pres==L){
+                    printf("Xiongdei!到顶咯！\n");
                 }else{
                     head=head->pres;
-                    printf("%d",head->stu_num);
                 }
                 break;
             case 's':
                 if(head->next==NULL){
-                    printf("此节点不存在！\n");
+                    printf("xionadei!到末尾咯！\n");
                 }else{
                     head=head->next;
-                    printf("%d",head->stu_num);
                 }
+                break;
+            case 'q':
+                printf("Exited!\n");
+                exit(1);
                 break;
             default:
                 printf("Wrong!\n");
                 break;
         }
+        printf("%d\n",head->stu_num);
         getchar();
         scanf("%c",&op);
     }
     
+}
+void double_list_prt2(NDT head){//单链表遍历输出
+    int cnt=0;//用于计数
+    if(head->next==NULL){//链表为空时反馈
+        printf("The list is empty!\n");
+    }
+    else{
+        head=head->next;
+        while (head) {
+            printf("%4d\t",head->stu_num);
+            cnt++;
+            head=head->next;
+            if(cnt%10==0){
+                printf("\n");
+            }//常规操作
+        }
+        printf("\n");//最后换行一下
+    }
+}
+int double_list_len(NDT L){
+    int cnt=0;
+    while(L){
+        cnt++;
+        L=L->next;
+    }
+    return cnt;
+}
+NDT double_list_insert(NDT L,int double_list_len){
+    NDT new_node;
+    NDT p=L->next;
+    int loc;
+    int i;
+    printf("请输入新数据\n");
+    new_node=(NDT)malloc(sizeof(DT));
+    scanf("%d",&new_node->stu_num);
+    new_node->next=new_node->pres=NULL;
+    printf("新节点放在什么位置？");
+    scanf("%d",&loc);
+    if(loc>double_list_len-1||loc<=0){
+        printf("位置插入错误！\n");
+    }else{
+        for (i=1; i<=loc-1; i++) {
+            p=p->next;
+        }
+        new_node->next=p;
+        new_node->pres=p->pres;
+        p->pres->next=new_node;
+        p->pres=new_node;
+    }
+//    printf("%d",p->stu_num);//test
+    return L;
+}
+
+NDT double_list_delete(NDT L,int double_list_len){
+    NDT p=L->next;
+    DT save_list;
+    int loc;
+    int i;
+    printf("删除第几个节点？");
+    scanf("%d",&loc);
+    if(loc>double_list_len-1||loc<=0){
+        printf("无此节点！\n");
+    }else{
+        for (i=1; i<=loc-1; i++) {
+            p=p->next;
+        }
+        save_list.stu_num=p->stu_num;
+        if(loc==double_list_len-1){
+            p->pres->next=NULL;
+        }else{
+            p->next->pres=p->pres;
+            p->pres->next=p->next;
+        }
+        free(p);
+    }
+//    printf("%d",p->stu_num);//test
+    return L;
 }
 

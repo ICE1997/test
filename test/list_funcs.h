@@ -30,3 +30,7 @@ Node* list_circl_crt_onenode(void);
 void list_circl_tail_prt(Node* tail);
 NDT double_list_crt(int list_length);
 void double_list_prt(NDT L);
+NDT double_list_insert(NDT L,int double_list_len);
+NDT double_list_delete(NDT L,int double_list_len);
+void double_list_prt2(NDT head);
+int double_list_len(NDT L);
